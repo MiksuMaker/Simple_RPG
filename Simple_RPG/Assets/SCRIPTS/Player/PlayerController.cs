@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask movementMask;
     Camera cam;
     PlayerMover mover;
+    public Interactable focus;
 
 
     void Start()
@@ -43,8 +44,10 @@ public class PlayerController : MonoBehaviour
                 mover.MoveToPoint(hit.point);
 
                 // Stop focusing on any objects
+                RemoveFocus();
             }
         }
+
         // Check for RIGHT User Click
         if (Input.GetMouseButtonDown(1))        // RIGHT
         {
@@ -56,12 +59,24 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100))
             {
                 // Check if hit an interactable object
-
-                // If did, set it as focus
+                Interactable interactable = hit.collider.GetComponent<Interactable>();
+                if (interactable != null)
+                {
+                    // If did, set it as focus
+                    SetFocus(interactable);
+                }
             }
         }
-
     }
 
+    private void SetFocus(Interactable newFocus)
+    {
+        focus = newFocus;
+    }
+
+    private void RemoveFocus()
+    {
+        focus = null;
+    }
 
 }
