@@ -53,7 +53,7 @@ sysinfo.txt
 
 # Builds
 *.apk
-#*.unitypackage
+#*.unitypackage		# Uncomment this line if you desire to have .unitypackages ignored.
 
 # Crashlytics generated file
 crashlytics-build.properties
