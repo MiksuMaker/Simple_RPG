@@ -6,24 +6,34 @@ public class Interactable : MonoBehaviour
 {
     //interactionDistance
     public float radius = 3f;
+    public Transform interactionTransform;
 
     bool isFocus = false;
     Transform player;
 
     bool hasInterActed = false;
-    /// <summary>
-    /// ///////////////////////////////////////////////////////////////// BRACKEYS video INTERACTION 11:34
-    /// </summary>
+
+
+    public virtual void Interact()
+    {
+        // This method is meant to be overwritten (in the specific script of the interactable item or enemy)
+        Debug.Log("Interacting with " + transform.name);
+    }
+
+
 
     private void Update()
     {
-        if (isFocus)
+        if (isFocus && !hasInterActed)
         {
-            float distance = Vector3.Distance(player.position, transform.position);
+            float distance = Vector3.Distance(player.position, interactionTransform.position);
             if (distance <= radius)
             {
                 //Interact
-                Debug.Log("INTERACT!");
+                //Debug.Log("INTERACT!");
+                Interact();
+
+                hasInterActed = true;
             }
         }
     }
@@ -33,18 +43,21 @@ public class Interactable : MonoBehaviour
     {
         isFocus = true;
         player = playerTransform;
+        hasInterActed = false;
     }
 
     public void OnDefocused()
     {
         isFocus = false;
         player = null;
+        hasInterActed = false;
     }
 
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(interactionTransform.position, radius);
     }
+
 }
