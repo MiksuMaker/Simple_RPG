@@ -7,5 +7,12 @@ public class Item : ScriptableObject
     public Sprite icon = null;
     public bool isDefaultItem = false;
 
+    public virtual void Use()
+    {
+        // This method is overwritten when necessary
+        // Something might happen
+
+        Debug.Log("Using " + name);
+    }
 
 }

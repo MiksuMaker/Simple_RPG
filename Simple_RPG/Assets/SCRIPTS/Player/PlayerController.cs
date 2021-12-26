@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 
@@ -28,6 +27,10 @@ public class PlayerController : MonoBehaviour
 
     private void CheckForClicks()
     {
+        // Check that mouse is not over UI
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         // Check for LEFT User Click
         if (Input.GetMouseButtonDown(0))        // LEFT
         {
