@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab04992ee119864c975afab3f08fdaf, type: 3}
   m_Name: Helmet of Warding
   m_EditorClassIdentifier: 
-  name: New Item
-  icon: {fileID: 0}
+  name: Helmet of Warding
+  icon: {fileID: 21300000, guid: 5cbbfc264ca695d42849cf17f4689683, type: 3}
   isDefaultItem: 0
+  equipSlot: 0
+  armorModifier: 3
+  damageModifier: 0
