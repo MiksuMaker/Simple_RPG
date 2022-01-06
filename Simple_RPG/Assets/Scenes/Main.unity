@@ -1018,7 +1018,7 @@ GameObject:
   - component: {fileID: 379226367}
   - component: {fileID: 379226366}
   m_Layer: 0
-  m_Name: Sword of Destiny
+  m_Name: Chest Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1129,7 +1129,7 @@ GameObject:
   - component: {fileID: 386727943}
   - component: {fileID: 386727942}
   m_Layer: 0
-  m_Name: Helmet of Fire
+  m_Name: Plate Leggins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2663,7 +2663,7 @@ GameObject:
   - component: {fileID: 629181670}
   - component: {fileID: 629181669}
   m_Layer: 0
-  m_Name: Helmet of Warding
+  m_Name: Helmet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7086,6 +7086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3066314bba2a884495d6abe93fa4847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetMesh: {fileID: 4529033413883266180}
 --- !u!4 &1809443307 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4440810316734408, guid: bfc2a43bc280a494dbd8a2a82e95a634, type: 3}
