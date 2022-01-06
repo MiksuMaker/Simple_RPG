@@ -18,7 +18,6 @@ public class Equipment : Item
 
         // Remove it from inventory     (because it is equipped now)
         RemoveFromInventory();
-
     }
 }
 

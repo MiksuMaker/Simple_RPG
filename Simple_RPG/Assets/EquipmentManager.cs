@@ -17,8 +17,15 @@ public class EquipmentManager : MonoBehaviour
 
     Equipment[] currentEquipment;
 
+    public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem);
+    public OnEquipmentChanged onEquipmentChanged;
+
+    Inventory inventory;
+
     private void Start()
     {
+        inventory = Inventory.instance;
+
         // Code below gets the .Length of Enum EquipmentSlot    (from Equipment.cs)
         int numSlots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
         currentEquipment = new Equipment[numSlots];
@@ -28,8 +35,52 @@ public class EquipmentManager : MonoBehaviour
     {
         int slotIndex = (int)newItem.equipSlot;
 
-        /// CONTINUE FROM BRACKEYS - EQUIPMENT  9:08  -->
+        //Equipment oldItem = currentEquipment[slotIndex];  // HOW I did it first (worked too)
+        Equipment oldItem = null;   // HOW Brackeys did it  (1/2)
+
+        // Check if there is already an item equipped
+        if (currentEquipment[slotIndex] != null)
+        {
+            oldItem = currentEquipment[slotIndex];    //    (2/2)
+            //inventory.Add(oldItem);
+            Unequip(slotIndex);
+        }
+
+        if (onEquipmentChanged != null)
+        {
+            onEquipmentChanged.Invoke(newItem, oldItem);
+        }
 
         currentEquipment[slotIndex] = newItem;
+    }
+
+    public void Unequip (int slotIndex)
+    {
+        if (currentEquipment[slotIndex] != null)
+        {
+            Equipment oldItem = currentEquipment[slotIndex];
+            inventory.Add(oldItem);
+
+            currentEquipment[slotIndex] = null;
+
+            if (onEquipmentChanged != null)
+            {
+                onEquipmentChanged.Invoke(null, oldItem);
+            }
+        }
+    }
+
+    public void UnequipEverything()
+    {
+        for (int i = 0; i < currentEquipment.Length; i++)
+        {
+            Unequip(i);
+        }
+    }
+
+    private void Update()   // Checks for Unequip button prompt
+    {
+        if (Input.GetKeyDown(KeyCode.U))
+            UnequipEverything();
     }
 }
